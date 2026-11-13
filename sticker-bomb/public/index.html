@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="description" content="Create and print a Cape Town sticker campaign, then claim and place stickers one stop at a time.">
+<title>Sticker Bomb</title>
+<meta name="theme-color" content="#151514">
+<link rel="manifest" href="/manifest.webmanifest">
+<link rel="apple-touch-icon" href="/icon-192.png">
+<link rel="icon" href="/icon-192.png">
+<link rel="stylesheet" href="/vendor/map.css">
+<script defer src="/vendor/map.js"></script>
+<link rel="stylesheet" href="/style.css">
+<script defer src="/vendor/qr.js"></script>
+<script defer src="/vendor/pdf.js"></script>
+<script defer src="/route.js"></script>
+<script defer src="/app.js?v=22"></script>
+</head>
+<body>
+<header><a href="/" class="logo">Sticker Bomb 💣</a></header>
+<main>
+<section class="hero"><div><h1>Take it to<br>the streets.</h1><p>Cape Town · Sea Point</p></div><div class="seal" aria-hidden="true">STICKER<br>BOMB 💣</div></section>
+<nav aria-label="Workspace">
+<button data-view="company" aria-pressed="true">Campaigns</button>
+<button data-view="worker" aria-pressed="false">Worker jobs</button>
+</nav>
+<section id="company" class="panel">
+<h2>Create a campaign</h2>
+<form id="campaign">
+<div class="grid">
+<label>Placement area<select name="area" required><option value="">Choose placement area</option><option value="sea-point">Sea Point, Cape Town</option><option value="local-test">Current location · one-sticker test</option></select></label>
+<div id="local-pin" hidden><p>The exact pin will be visible in the published test campaign. Choose a public spot where you can place a sticker.</p><button type="button" id="use-location">Use my current location</button><p id="pin-status" role="status"></p></div>
+<label>Campaign name<input name="name" required maxlength="70" value="Sea Point Promenade"></label>
+<label>QR destination<input name="url" type="url" required maxlength="500" placeholder="https://example.com"></label>
+<label>Pickup PIN (6 digits)<small id="campaign-pin-help">Enter exactly 6 digits, such as 019997.</small><input name="pin" type="password" inputmode="numeric" maxlength="6" autocomplete="new-password" aria-describedby="campaign-pin-help"></label>
+<label>Text above QR (optional)<input name="caption" maxlength="90" placeholder="Scan to discover"></label>
+</div>
+<label>Text below QR (optional)<input name="footer" maxlength="90"></label>
+<label>Photo for halftone QR (optional)<input name="artwork" type="file" accept="image/*"></label>
+<button type="button" id="remove-artwork" hidden>Remove photo</button>
+<section class="sticker-preview" aria-labelledby="preview-title">
+<h3 id="preview-title">Sticker preview</h3><div id="preview"></div>
+</section>
+<details id="sea-point-stops"><summary>11 stickers · starts at La Perla</summary><ol id="stops"></ol></details>
+<p>Get permission from each property owner or site manager before placing a sticker.</p>
+<div class="actions">
+<button type="button" id="draft">Download PDF</button>
+<button type="submit" class="primary">Sign and publish</button>
+</div>
+</form>
+<details id="payout-demo">
+<summary>Completed Sepolia payout demo</summary>
+<p>Sample placement for testing. Fund one sticker with 1 mock USDT and pay 0.5 mock USDT to your connected wallet. MetaMask approvals require Sepolia ETH for gas.</p>
+<figure><img src="/wall.jpg" alt="Sample wall for a simulated sticker placement" width="240"><figcaption>Sample image · simulated placement</figcaption></figure>
+<div id="demo-controls" class="actions"></div>
+</details>
+<section id="progress" hidden></section>
+<h2 class="listing-title" id="published-heading" tabindex="-1">Published campaigns</h2>
+<div id="campaigns" aria-live="polite"></div>
+</section>
+<section id="worker" class="panel" hidden>
+<h2>Worker jobs</h2>
+<div id="work" aria-live="polite"></div>
+<form id="profile" hidden>
+<label>Your name<input name="name" required maxlength="50" autocomplete="given-name"></label>
+<button class="primary">Continue to location check</button>
+<button type="button" id="cancel-claim">Back</button>
+</form>
+</section>
+<p id="status" role="status"></p>
+</main>
+<footer>Sticker Bomb · Sepolia testnet</footer>
+<dialog id="sticker-screen" aria-label="Sticker artwork">
+<form method="dialog"><button aria-label="Close sticker artwork">Close</button></form>
+<label>Choose a sticker<select id="sticker-number"></select></label>
+<div id="sticker-art"></div>
+</dialog>
+<aside id="install" class="install" aria-label="Install Sticker Bomb" hidden>
+<div><strong>Sticker Bomb</strong><p id="install-note">Add to your home screen.</p></div>
+<button type="button" id="install-go" class="primary">Install app</button>
+<button type="button" id="install-close" aria-label="Dismiss install prompt">×</button>
+</aside>
+</body>
+</html>

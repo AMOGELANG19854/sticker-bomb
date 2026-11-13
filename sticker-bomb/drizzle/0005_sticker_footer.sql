@@ -1,0 +1,1 @@
+ALTER TABLE campaigns ADD COLUMN footer TEXT NOT NULL DEFAULT '';
